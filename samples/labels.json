@@ -1,0 +1,64 @@
+{
+  "_about": "Hand-labelled ground truth for scripts/evaluate.py. Each line item is [line_type, amount]. excluded_keywords are phrases from unbilled (recommended/declined) work that must NOT appear in any extracted line item. expect_sum_matches is whether the line items should add up to the stated subtotal.",
+  "inv_07_harborline": {
+    "source": "provided",
+    "tests": "numbered table, sublet fee without qty/rate, two tax lines, recommendation after totals",
+    "work_order_number": "HL-33092", "unit_number": "TRL-5531", "service_date": "2026-07-22",
+    "vendor_name": "HARBORLINE TRAILER",
+    "line_items": [["labor", 115.00], ["part", 470.00], ["part", 13.00], ["fee", 10.00],
+                   ["labor", 92.00], ["part", 58.40], ["fee", 145.00]],
+    "subtotal": 903.40, "tax": 39.25, "total": 942.65,
+    "expect_sum_matches": true, "excluded_keywords": ["brake shoe"]
+  },
+  "inv_08_greatlakes": {
+    "source": "provided",
+    "tests": "complaint/cause/correction layout, core charge, goodwill credit, declined repair line",
+    "work_order_number": "41187", "unit_number": "3906", "service_date": "2026-08-14",
+    "vendor_name": "GREAT LAKES TRUCK CENTER",
+    "line_items": [["labor", 158.00], ["labor", 331.80], ["part", 1286.00], ["core_charge", 150.00],
+                   ["part", 44.75], ["discount", -199.61], ["fee", 24.49]],
+    "subtotal": 1795.43, "tax": 76.87, "total": 1872.30,
+    "expect_sum_matches": true, "excluded_keywords": ["tank heater"]
+  },
+  "inv_09_desertsun": {
+    "source": "provided",
+    "tests": "one-line charges with inline rates, deposit and balance due after total, next-visit note",
+    "work_order_number": "DS-1189", "unit_number": "6620", "service_date": "2026-09-03",
+    "vendor_name": "DESERT SUN DIESEL",
+    "line_items": [["labor", 142.50], ["part", 38.00], ["labor", 66.50], ["part", 189.00],
+                   ["part", 189.00], ["fee", 65.00]],
+    "subtotal": 690.00, "tax": 35.78, "total": 725.78,
+    "expect_sum_matches": true, "excluded_keywords": ["mirror"]
+  },
+  "inv_10_pinecrest": {
+    "source": "created",
+    "tests": "declined and recommended rows mixed between billed rows (with prices), core deposit, labor discount, zero tax",
+    "work_order_number": "PFS-20417", "unit_number": "7714", "service_date": "2026-10-02",
+    "vendor_name": "PINECREST FLEET",
+    "line_items": [["labor", 168.00], ["part", 212.40], ["core_charge", 45.00], ["labor", 112.00],
+                   ["part", 58.75], ["labor", 70.00], ["fee", 18.50], ["discount", -17.50]],
+    "subtotal": 667.15, "tax": 0.00, "total": 667.15,
+    "expect_sum_matches": true, "excluded_keywords": ["shock", "brake pad"]
+  },
+  "inv_11_ironbridge": {
+    "source": "created",
+    "tests": "stated subtotal is 25.00 higher than the billed lines; reconciliation must flag it, not fix it",
+    "work_order_number": "IB-5562", "unit_number": "CH-2208", "service_date": "2026-10-08",
+    "vendor_name": "IRONBRIDGE MOBILE",
+    "line_items": [["labor", 175.00], ["labor", 192.00], ["labor", 64.00], ["part", 489.00],
+                   ["part", 6.00], ["part", 14.00], ["fee", 7.50]],
+    "subtotal": 972.50, "tax": 68.08, "total": 1040.58,
+    "expect_sum_matches": false, "excluded_keywords": []
+  },
+  "inv_12_northstar": {
+    "source": "created",
+    "tests": "two-page invoice with items split across pages, state + city tax, deposit, recommendation on last page",
+    "work_order_number": "NTW-88310", "unit_number": "DL-4471", "service_date": "2026-09-21",
+    "vendor_name": "NORTHSTAR TRAILER",
+    "line_items": [["labor", 165.20], ["part", 47.60], ["part", 27.45], ["labor", 236.00],
+                   ["part", 312.00], ["core_charge", 60.00], ["labor", 118.00], ["part", 74.90],
+                   ["fee", 22.00]],
+    "subtotal": 1063.15, "tax": 78.41, "total": 1141.56,
+    "expect_sum_matches": true, "excluded_keywords": ["floor board"]
+  }
+}

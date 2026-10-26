@@ -1,0 +1,132 @@
+{
+  "description": "Fleet repair invoice line-item extractor (billed work only)",
+  "baseAnalyzerId": "prebuilt-document",
+  "models": {
+    "completion": "gpt-5",
+    "embedding": "text-embedding-3-large"
+  },
+  "config": {
+    "returnDetails": false,
+    "enableOcr": true,
+    "enableLayout": true,
+    "enableFormula": false,
+    "enableFigureDescription": false,
+    "enableFigureAnalysis": false,
+    "tableFormat": "html",
+    "enableSegment": false,
+    "omitContent": false
+  },
+  "fieldSchema": {
+    "fields": {
+      "work_order_number": {
+        "type": "string",
+        "method": "extract",
+        "description": "The repair shop's work order, repair order (RO), or invoice number for this job, as printed in the header. Not a customer PO number."
+      },
+      "unit_number": {
+        "type": "string",
+        "method": "extract",
+        "description": "The customer's fleet, unit, or trailer number for the vehicle that was serviced (e.g. 'Customer Unit No.', 'FLEET #', 'Trailer/Unit #')."
+      },
+      "vin": {
+        "type": "string",
+        "method": "extract",
+        "description": "The 17-character Vehicle Identification Number of the serviced vehicle. Leave empty if not printed."
+      },
+      "service_date": {
+        "type": "date",
+        "method": "extract",
+        "description": "The date the work was completed or invoiced (RO closed date or invoice date). If both an opened and a closed date appear, use the closed date."
+      },
+      "vendor_name": {
+        "type": "string",
+        "method": "extract",
+        "description": "The name of the repair shop or vendor that performed the work and issued this invoice, usually at the top of the page. Never the customer or bill-to company."
+      },
+      "line_items": {
+        "type": "array",
+        "method": "generate",
+        "description": "Every charge that was actually performed and billed on this invoice, one entry per printed charge line, in document order. Include labor, parts, core charges, fees, shop supplies, sublet work, and discounts or credits. EXCLUDE any work that is recommended, declined, quoted, estimated, proposed, deferred, 'not billed', or 'next visit' - even if a price is shown for it; put those in excluded_items instead. Do not include subtotal, tax, total, deposit, or balance-due lines. The amounts of all line_items should add up to the invoice subtotal.",
+        "items": {
+          "type": "object",
+          "method": "generate",
+          "properties": {
+            "line_type": {
+              "type": "string",
+              "method": "generate",
+              "enum": ["labor", "part", "fee", "discount", "core_charge"],
+              "description": "labor for labor hours; part for parts; core_charge for refundable core deposits; discount for credits or negative amounts; fee for shop supplies, disposal, mobile/service charges, sublet, and other fees."
+            },
+            "part_number": {
+              "type": "string",
+              "method": "extract",
+              "description": "The part number printed for this line. Leave empty for labor and fees without one."
+            },
+            "description": {
+              "type": "string",
+              "method": "extract",
+              "description": "The description of the work or item exactly as printed on the line."
+            },
+            "quantity": {
+              "type": "number",
+              "method": "extract",
+              "description": "Quantity or labor hours billed on this line. Leave empty if not printed."
+            },
+            "unit_price": {
+              "type": "number",
+              "method": "extract",
+              "description": "Unit price or hourly rate printed on this line. Leave empty if not printed."
+            },
+            "amount": {
+              "type": "number",
+              "method": "extract",
+              "description": "The extended amount charged for this line as printed. Negative for discounts and credits."
+            }
+          }
+        }
+      },
+      "excluded_items": {
+        "type": "array",
+        "method": "generate",
+        "description": "Work or items mentioned on the invoice that were NOT billed: recommended, declined, quoted, estimated, deferred, or 'next visit' work. Empty if there are none.",
+        "items": {
+          "type": "object",
+          "method": "generate",
+          "properties": {
+            "description": {
+              "type": "string",
+              "method": "generate",
+              "description": "Short description of the unbilled work."
+            },
+            "reason": {
+              "type": "string",
+              "method": "generate",
+              "enum": ["recommended", "declined", "quoted", "deferred", "other"],
+              "description": "Why it was not billed."
+            },
+            "quoted_amount": {
+              "type": "number",
+              "method": "extract",
+              "description": "The quoted or estimated price, if one is printed. Leave empty otherwise."
+            }
+          }
+        }
+      },
+      "subtotal": {
+        "type": "number",
+        "method": "extract",
+        "description": "The invoice subtotal before tax, as printed."
+      },
+      "tax": {
+        "type": "number",
+        "method": "generate",
+        "description": "The total tax charged: the sum of all tax lines (e.g. state tax plus county tax). Use 0 if no tax is charged."
+      },
+      "total": {
+        "type": "number",
+        "method": "extract",
+        "description": "The invoice total after tax, before any deposits or payments are subtracted (not the balance due)."
+      }
+    }
+  }
+}

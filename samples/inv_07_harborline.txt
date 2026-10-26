@@ -1,0 +1,26 @@
+HARBORLINE TRAILER & TIRE
+2250 Terminal Way, Long Beach, CA 90813  |  562-555-0137  |  service@harborline.example
+
+REPAIR INVOICE                                   Work Order: HL-33092
+Invoice Date: 07/22/2026                         Customer PO: RY-LB-0912
+Bill To: Ryder Dedicated - Long Beach
+Equipment: 53' Reefer Trailer   Trailer/Unit #: TRL-5531   VIN: 1UYVS2530LM774410
+
+ #  TYPE   PART #       DESCRIPTION                              QTY     RATE     AMOUNT
+ 1  LABOR               Dismount/mount 2 trailer tires, axle 2   1.0   115.00     115.00
+ 2  PART   RC-29575     Tire 295/75R22.5 recap                     2   235.00     470.00
+ 3  PART   VS-445       Valve stem, brass                          2     6.50      13.00
+ 4  FEE                 Tire disposal                              2     5.00      10.00
+ 5  LABOR               Repair chafed ABS harness, axle 1 RH     0.8   115.00      92.00
+ 6  PART   449-0213     ABS sensor extension cable                 1    58.40      58.40
+ 7  FEE                 Sublet: reefer unit diagnostic (ThermoTech)                145.00
+                                                                           -----------
+                                                         SUBTOTAL             903.40
+                                                  CA STATE TAX 6.25%           33.84
+                                                  LA COUNTY TAX 1.00%           5.41
+                                                         INVOICE TOTAL        942.65
+
+TECHNICIAN NOTES / RECOMMENDATIONS (NOT BILLED)
+ - Axle 1 brake shoes at ~25% lining. Recommend replacement within 30 days. Est. $480.00
+
+Signature on file. Net 30.

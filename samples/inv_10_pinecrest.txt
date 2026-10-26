@@ -1,0 +1,27 @@
+PINECREST FLEET SERVICES
+880 Timberline Rd, Bend, OR 97701  |  541-555-0142  |  billing@pinecrest.example
+
+SERVICE INVOICE
+Invoice No: PFS-20417                          Date Completed: 10/02/2026
+Customer: Ryder - Bend Terminal
+Unit: 7714          VIN: 1FUJHHDR9NLMX4521          Odometer: 412,880
+
+STATUS       PART #       DESCRIPTION                              QTY     PRICE   EXTENDED
+BILLED                    Diagnose air leak, primary tank          1.2    140.00     168.00
+BILLED       109685       Air dryer cartridge                        1    212.40     212.40
+BILLED       109685-C     Air dryer core deposit                     1     45.00      45.00
+BILLED                    R&R air dryer cartridge                  0.8    140.00     112.00
+DECLINED                  R&R both front shock absorbers           1.5    140.00     210.00
+DECLINED     85-1170      Front shock absorber                       2     96.50     193.00
+BILLED       K081120      Serpentine belt                            1     58.75      58.75
+BILLED                    R&R serpentine belt                      0.5    140.00      70.00
+BILLED                    Environmental / shop supplies fee                            18.50
+BILLED                    Fleet account discount - 5% of labor                        -17.50
+RECOMMENDED               Front brake pads at 4 mm - replace at next PM               280.00
+
+                                                   BILLED SUBTOTAL                    667.15
+                                                   SALES TAX (OR - none)                0.00
+                                                   INVOICE TOTAL                      667.15
+
+Declined and recommended lines are shown for reference only and are NOT included in totals.
+Customer authorization: M. Okafor, by phone, 10/01/2026.

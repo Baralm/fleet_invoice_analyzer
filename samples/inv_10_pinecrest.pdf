@@ -1,0 +1,60 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 2085 >>
+stream
+BT /F1 9 Tf 11 TL 36 756 Td
+(PINECREST FLEET SERVICES) Tj T*
+(880 Timberline Rd, Bend, OR 97701  |  541-555-0142  |  billing@pinecrest.example) Tj T*
+() Tj T*
+(SERVICE INVOICE) Tj T*
+(Invoice No: PFS-20417                          Date Completed: 10/02/2026) Tj T*
+(Customer: Ryder - Bend Terminal) Tj T*
+(Unit: 7714          VIN: 1FUJHHDR9NLMX4521          Odometer: 412,880) Tj T*
+() Tj T*
+(STATUS       PART #       DESCRIPTION                              QTY     PRICE   EXTENDED) Tj T*
+(BILLED                    Diagnose air leak, primary tank          1.2    140.00     168.00) Tj T*
+(BILLED       109685       Air dryer cartridge                        1    212.40     212.40) Tj T*
+(BILLED       109685-C     Air dryer core deposit                     1     45.00      45.00) Tj T*
+(BILLED                    R&R air dryer cartridge                  0.8    140.00     112.00) Tj T*
+(DECLINED                  R&R both front shock absorbers           1.5    140.00     210.00) Tj T*
+(DECLINED     85-1170      Front shock absorber                       2     96.50     193.00) Tj T*
+(BILLED       K081120      Serpentine belt                            1     58.75      58.75) Tj T*
+(BILLED                    R&R serpentine belt                      0.5    140.00      70.00) Tj T*
+(BILLED                    Environmental / shop supplies fee                            18.50) Tj T*
+(BILLED                    Fleet account discount - 5% of labor                        -17.50) Tj T*
+(RECOMMENDED               Front brake pads at 4 mm - replace at next PM               280.00) Tj T*
+() Tj T*
+(                                                   BILLED SUBTOTAL                    667.15) Tj T*
+(                                                   SALES TAX \(OR - none\)                0.00) Tj T*
+(                                                   INVOICE TOTAL                      667.15) Tj T*
+() Tj T*
+(Declined and recommended lines are shown for reference only and are NOT included in totals.) Tj T*
+(Customer authorization: M. Okafor, by phone, 10/01/2026.) Tj T*
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000210 00000 n 
+0000000336 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2473
+%%EOF

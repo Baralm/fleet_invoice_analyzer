@@ -1,0 +1,301 @@
+{
+  "mode": "azure",
+  "summary": {
+    "all": {
+      "documents": 12,
+      "schema_valid_rate": 1.0,
+      "line_item_precision": 1.0,
+      "line_item_recall": 1.0,
+      "line_item_f1": 1.0,
+      "amount_only_f1": 1.0,
+      "header_field_accuracy": 1.0,
+      "totals_accuracy": 1.0,
+      "reconciliation_flag_accuracy": 1.0,
+      "unbilled_items_leaked": 0,
+      "mean_seconds_per_document": 18.54
+    },
+    "provided": {
+      "documents": 6,
+      "schema_valid_rate": 1.0,
+      "line_item_precision": 1.0,
+      "line_item_recall": 1.0,
+      "line_item_f1": 1.0,
+      "amount_only_f1": 1.0,
+      "header_field_accuracy": 1.0,
+      "totals_accuracy": 1.0,
+      "reconciliation_flag_accuracy": 1.0,
+      "unbilled_items_leaked": 0,
+      "mean_seconds_per_document": 16.92
+    },
+    "created": {
+      "documents": 6,
+      "schema_valid_rate": 1.0,
+      "line_item_precision": 1.0,
+      "line_item_recall": 1.0,
+      "line_item_f1": 1.0,
+      "amount_only_f1": 1.0,
+      "header_field_accuracy": 1.0,
+      "totals_accuracy": 1.0,
+      "reconciliation_flag_accuracy": 1.0,
+      "unbilled_items_leaked": 0,
+      "mean_seconds_per_document": 20.17
+    }
+  },
+  "documents": [
+    {
+      "file": "inv_07_harborline.pdf",
+      "source": "provided",
+      "http_status": 200,
+      "seconds": 29.88,
+      "expected_items": 7,
+      "schema_valid": true,
+      "extracted_items": 7,
+      "typed_matches": 7,
+      "amount_matches": 7,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (recommended): Axle 1 brake shoes at ~25% lining. Recommend replacement within 30 days. Est. $480.00"
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_07_harborline.txt",
+      "source": "provided",
+      "http_status": 200,
+      "seconds": 6.84,
+      "expected_items": 7,
+      "schema_valid": true,
+      "extracted_items": 7,
+      "typed_matches": 7,
+      "amount_matches": 7,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (recommended): Axle 1 brake shoes at ~25% lining. Recommend replacement within 30 days."
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_08_greatlakes.pdf",
+      "source": "provided",
+      "http_status": 200,
+      "seconds": 32.35,
+      "expected_items": 7,
+      "schema_valid": true,
+      "extracted_items": 7,
+      "typed_matches": 7,
+      "amount_matches": 7,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (declined): Customer states: DEF tank heater code intermittent. ** CUSTOMER DECLINED REPAIR ** Quoted: R&R DEF tank heater, parts & labor"
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_08_greatlakes.txt",
+      "source": "provided",
+      "http_status": 200,
+      "seconds": 7.11,
+      "expected_items": 7,
+      "schema_valid": true,
+      "extracted_items": 7,
+      "typed_matches": 7,
+      "amount_matches": 7,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (declined): R&R DEF tank heater, parts & labor"
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_09_desertsun.pdf",
+      "source": "provided",
+      "http_status": 200,
+      "seconds": 18.42,
+      "expected_items": 6,
+      "schema_valid": true,
+      "extracted_items": 6,
+      "typed_matches": 6,
+      "amount_matches": 6,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (other): Note: passenger mirror arm loose - can tighten next visit, no charge quoted."
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_09_desertsun.txt",
+      "source": "provided",
+      "http_status": 200,
+      "seconds": 6.92,
+      "expected_items": 6,
+      "schema_valid": true,
+      "extracted_items": 6,
+      "typed_matches": 6,
+      "amount_matches": 6,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (deferred): passenger mirror arm loose - can tighten next visit, no charge quoted."
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_10_pinecrest.pdf",
+      "source": "created",
+      "http_status": 200,
+      "seconds": 40.24,
+      "expected_items": 8,
+      "schema_valid": true,
+      "extracted_items": 8,
+      "typed_matches": 8,
+      "amount_matches": 8,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (declined): R&R both front shock absorbers",
+        "Excluded unbilled item (declined): Front shock absorber",
+        "Excluded unbilled item (recommended): Front brake pads at 4 mm - replace at next PM"
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_10_pinecrest.txt",
+      "source": "created",
+      "http_status": 200,
+      "seconds": 8.42,
+      "expected_items": 8,
+      "schema_valid": true,
+      "extracted_items": 8,
+      "typed_matches": 8,
+      "amount_matches": 8,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (declined): R&R both front shock absorbers; Front shock absorber",
+        "Excluded unbilled item (recommended): Front brake pads at 4 mm - replace at next PM"
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_11_ironbridge.pdf",
+      "source": "created",
+      "http_status": 200,
+      "seconds": 29.42,
+      "expected_items": 7,
+      "schema_valid": true,
+      "extracted_items": 7,
+      "typed_matches": 7,
+      "amount_matches": 7,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Line item amounts sum to 947.50, but invoice subtotal is 972.50."
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_11_ironbridge.txt",
+      "source": "created",
+      "http_status": 200,
+      "seconds": 6.71,
+      "expected_items": 7,
+      "schema_valid": true,
+      "extracted_items": 7,
+      "typed_matches": 7,
+      "amount_matches": 7,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Line item amounts sum to 947.50, but invoice subtotal is 972.50."
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_12_northstar.pdf",
+      "source": "created",
+      "http_status": 200,
+      "seconds": 29.28,
+      "expected_items": 9,
+      "schema_valid": true,
+      "extracted_items": 9,
+      "typed_matches": 9,
+      "amount_matches": 9,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (recommended): Floor boards near nose have soft spots. Quote to replace 3 boards"
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "file": "inv_12_northstar.txt",
+      "source": "created",
+      "http_status": 200,
+      "seconds": 6.92,
+      "expected_items": 9,
+      "schema_valid": true,
+      "extracted_items": 9,
+      "typed_matches": 9,
+      "amount_matches": 9,
+      "header_correct": 4,
+      "totals_correct": 3,
+      "reconciliation_flag_correct": true,
+      "exclusion_leaks": [],
+      "notes": [
+        "Excluded unbilled item (recommended): Floor boards near nose have soft spots. Quote to replace 3 boards"
+      ],
+      "missing": [],
+      "unexpected": [],
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+GREAT LAKES TRUCK CENTER  -  SERVICE DEPARTMENT
+19400 Allen Rd, Brownstown, MI 48183      Phone (734) 555-0161
+
+Repair Order No.: 41187                  RO Opened: Aug 13 2026   RO Closed: Aug 14 2026
+Customer: RYDER TRANSPORTATION SVCS       Customer Unit No.: 3906
+VIN: 3AKJGLDR1MSMB2290                    2021 Freightliner Cascadia    Mileage In: 341,076
+
+LINE A  CUSTOMER STATES: DEF warning lamp on, 5 mph derate pending.
+        CAUSE: DEF pump module internal failure (SPN 4334 FMI 18).
+        CORRECTION: Replaced DEF pump module and filter. Performed forced regen. Verified repair.
+
+  LABOR    Diagnose DEF system                            1.0 hrs  x  158.00  =    158.00
+  LABOR    R&R DEF pump module                            2.1 hrs  x  158.00  =    331.80
+  PARTS    A0001421589   DEF pump module          qty 1  @  1,286.00          =  1,286.00
+  CORE     A0001421589C  DEF pump core charge     qty 1  @    150.00          =    150.00
+  PARTS    A0001420489   DEF filter               qty 1  @     44.75          =     44.75
+
+LINE B  CUSTOMER STATES: DEF tank heater code intermittent.
+        ** CUSTOMER DECLINED REPAIR ** Quoted: R&R DEF tank heater, parts & labor $612.00
+
+MISCELLANEOUS
+  Goodwill credit - 15% parts (approved by J. Ruiz)                       =   -199.61
+  Shop supplies (5% of labor, max $40)                                    =     24.49
+
+                                              Sub-Total ................  1,795.43
+                                              Sales Tax 6% .............     76.87
+                                              TOTAL AMOUNT DUE .........  1,872.30
+
+Warranty: parts 12 months / unlimited miles. Core credit issued on return of rebuildable core.

@@ -1,0 +1,58 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 1462 >>
+stream
+BT /F1 9 Tf 11 TL 36 756 Td
+(IRONBRIDGE MOBILE TRUCK REPAIR) Tj T*
+(PO Box 3310, Gary, IN 46401      \(219\) 555-0198      dispatch@ironbridge.example) Tj T*
+() Tj T*
+(WORK ORDER #: IB-5562                              SERVICE DATE: 2026-10-08) Tj T*
+(BILL TO: Ryder Fleet - Chicago South               UNIT: CH-2208) Tj T*
+(VIN: 3HSDZAPR5PN581206                             LOCATION: I-80 EB, mile marker 12) Tj T*
+() Tj T*
+(LABOR) Tj T*
+(  Roadside service labor, flat rate                       flat           175.00) Tj T*
+(  Replace LH steer tire and balance             1.5 hr @ 128.00          192.00) Tj T*
+(  Inspect and re-torque wheel lug nuts          0.5 hr @ 128.00           64.00) Tj T*
+() Tj T*
+(PARTS) Tj T*
+(  Steer tire 315/80R22.5  \(BRG-31580\)               1 @ 489.00           489.00) Tj T*
+(  Valve stem cap set  \(VS-CAP4\)                     1 @   6.00             6.00) Tj T*
+(  Wheel balance beads  \(BB-8OZ\)                     1 @  14.00            14.00) Tj T*
+() Tj T*
+(FEES) Tj T*
+(  Old tire disposal                                                         7.50) Tj T*
+() Tj T*
+(                                                     SUBTOTAL             972.50) Tj T*
+(                                                     TAX 7%                68.08) Tj T*
+(                                                     TOTAL              1,040.58) Tj T*
+() Tj T*
+(Technician: D. Varga     Truck 4     Payment terms: Net 15) Tj T*
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000210 00000 n 
+0000000336 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1850
+%%EOF

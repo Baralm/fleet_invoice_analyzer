@@ -1,0 +1,163 @@
+{
+  "analyzerId": "LineItemExtract",
+  "description": "Line Item Extractor",
+  "tags": {
+    "projectId": "9af6766e-d0a7-49c6-81c1-6d437c4f81ec",
+    "templateId": "prebuilt-documentAnalyzer"
+  },
+  "createdAt": "2026-10-26T03:12:58Z",
+  "lastModifiedAt": "2026-10-26T03:12:58Z",
+  "baseAnalyzerId": "prebuilt-document",
+  "config": {
+    "returnDetails": false,
+    "enableOcr": true,
+    "enableLayout": true,
+    "enableFormula": true,
+    "enableFigureDescription": false,
+    "enableFigureAnalysis": false,
+    "chartFormat": "chartjs",
+    "tableFormat": "html",
+    "enableSegment": false,
+    "omitContent": false,
+    "segmentPerPage": false,
+    "annotationFormat": "markdown"
+  },
+  "fieldSchema": {
+    "fields": {
+      "work_order_number": {
+        "type": "string",
+        "method": "extract",
+        "description": "Service or billing contact email address of the repair service provider shown in the header"
+      },
+      "unit_number": {
+        "type": "string",
+        "method": "extract",
+        "description": "unit number"
+      },
+      "vin": {
+        "type": "string",
+        "method": "extract",
+        "description": "Vehicle Identification Number"
+      },
+      "service_date": {
+        "type": "date",
+        "method": "extract",
+        "description": "Date of the service"
+      },
+      "vendor_name": {
+        "type": "string",
+        "method": "extract",
+        "description": "Customer or fleet assigned trailer or unit identifier serviced on this invoice"
+      },
+      "EquipmentDescription": {
+        "type": "string",
+        "method": "extract",
+        "description": "Description of the equipment or asset type that was serviced"
+      },
+      "line_items": {
+        "type": "array",
+        "method": "generate",
+        "description": "Detailed billed items including labor, parts, and fees with quantities, rates, and extended amounts",
+        "items": {
+          "type": "object",
+          "method": "generate",
+          "properties": {
+            "line_type": {
+              "type": "string",
+              "method": "extract",
+              "description": "Category of the line item such as LABOR, PART, or FEE"
+            },
+            "part_number": {
+              "type": "string",
+              "method": "extract",
+              "description": "Supplier or internal part number when the item is a part; blank for labor or fees if none"
+            },
+            "description": {
+              "type": "string",
+              "method": "extract",
+              "description": "Narrative description of the work performed or item provided"
+            },
+            "quantity": {
+              "type": "number",
+              "method": "extract",
+              "description": "Quantity or hours billed for the line item"
+            },
+            "unit_price": {
+              "type": "number",
+              "method": "extract",
+              "description": "Unit rate or hourly rate applied to the line item"
+            },
+            "amount": {
+              "type": "number",
+              "method": "extract",
+              "description": "Extended amount for the line item after applying quantity and rate"
+            }
+          }
+        }
+      },
+      "sub_total": {
+        "type": "number",
+        "method": "extract",
+        "description": "total amount before tax "
+      },
+      "tax": {
+        "type": "string",
+        "method": "extract",
+        "description": "tax"
+      },
+      "total": {
+        "type": "number",
+        "method": "extract",
+        "description": "total amount after tax"
+      },
+      "validation": {
+        "type": "array",
+        "method": "generate",
+        "description": "Validating whether the Line item total matches with sub-total",
+        "items": {
+          "type": "object",
+          "method": "generate",
+          "properties": {
+            "line_items_sum_matches_subtotal": {
+              "type": "boolean",
+              "description": "line items matches the sub-total"
+            },
+            "notes": {
+              "type": "string",
+              "description": "notes"
+            }
+          }
+        }
+      }
+    }
+  },
+  "warnings": [],
+  "status": "ready",
+  "processingLocation": "geography",
+  "supportedModels": {
+    "completion": [
+      "gpt-4o",
+      "gpt-4o-mini",
+      "gpt-4.1",
+      "gpt-4.1-mini",
+      "gpt-4.1-nano",
+      "gpt-5",
+      "gpt-5-mini",
+      "gpt-5-nano",
+      "gpt-5.1",
+      "gpt-5.2",
+      "gpt-5.4",
+      "gpt-5.4-mini",
+      "gpt-5.5"
+    ],
+    "embedding": [
+      "text-embedding-3-small",
+      "text-embedding-3-large",
+      "text-embedding-ada-002"
+    ]
+  },
+  "models": {
+    "completion": "gpt-5",
+    "embedding": "text-embedding-3-large"
+  }
+}

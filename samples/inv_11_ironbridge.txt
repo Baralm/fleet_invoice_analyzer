@@ -1,0 +1,25 @@
+IRONBRIDGE MOBILE TRUCK REPAIR
+PO Box 3310, Gary, IN 46401      (219) 555-0198      dispatch@ironbridge.example
+
+WORK ORDER #: IB-5562                              SERVICE DATE: 2026-10-08
+BILL TO: Ryder Fleet - Chicago South               UNIT: CH-2208
+VIN: 3HSDZAPR5PN581206                             LOCATION: I-80 EB, mile marker 12
+
+LABOR
+  Roadside service labor, flat rate                       flat           175.00
+  Replace LH steer tire and balance             1.5 hr @ 128.00          192.00
+  Inspect and re-torque wheel lug nuts          0.5 hr @ 128.00           64.00
+
+PARTS
+  Steer tire 315/80R22.5  (BRG-31580)               1 @ 489.00           489.00
+  Valve stem cap set  (VS-CAP4)                     1 @   6.00             6.00
+  Wheel balance beads  (BB-8OZ)                     1 @  14.00            14.00
+
+FEES
+  Old tire disposal                                                         7.50
+
+                                                     SUBTOTAL             972.50
+                                                     TAX 7%                68.08
+                                                     TOTAL              1,040.58
+
+Technician: D. Varga     Truck 4     Payment terms: Net 15
