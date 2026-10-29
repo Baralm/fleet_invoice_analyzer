@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Fleet Invoice Analyzer – Architecture</title>
+<style>
+  @page { size: 11in 8.5in; margin: 0.3in; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; background: #fff; font: 10px/1.35 -apple-system, "Helvetica Neue", Arial, sans-serif; color: #1f2933; }
+  #canvas { position: relative; width: 990px; height: 750px; }
+  svg { position: absolute; inset: 0; }
+  .box { position: absolute; border: 1.4px solid #52606d; border-radius: 7px; background: #fff; padding: 6px 8px; }
+  .box h3 { margin: 0 0 3px; font-size: 11px; }
+  .box .file { font: 9px Menlo, monospace; color: #616e7c; margin-bottom: 4px; word-break: break-all; }
+  .box ul { margin: 0; padding-left: 12px; }
+  .box li { margin: 1px 0; }
+  code { font: 9px Menlo, monospace; background: #f0f2f5; padding: 0 2px; border-radius: 2px; }
+  .client { background: #f5f7fa; }
+  .api { border-color: #3e4c59; }
+  .azure { border-color: #0f6cbd; background: #eef5fc; }
+  .local { border-color: #7b8794; background: #f9fafb; }
+  .code { border-color: #2f855a; background: #f0faf4; }
+  .gate { border-color: #b7791f; background: #fffaf0; }
+  .tool { border-color: #9aa5b1; background: #fbfcfd; }
+  .group { position: absolute; border: 1.4px dashed #7b8794; border-radius: 9px; }
+  .group-label { position: absolute; font-size: 10px; font-weight: 600; color: #3e4c59; background: #fff; padding: 0 4px; }
+  .badge { display: inline-block; font-size: 8.5px; font-weight: 700; color: #fff; background: #c05621; border-radius: 8px; padding: 0 5px; margin-left: 3px; vertical-align: 1px; }
+  .lbl { position: absolute; font-size: 9px; color: #52606d; background: #fff; padding: 0 3px; }
+  h1 { position: absolute; left: 0; top: 0; margin: 0; font-size: 19px; }
+  .sub { position: absolute; left: 0; top: 26px; color: #52606d; font-size: 10.5px; }
+  .band { position: absolute; left: 0; top: 540px; width: 990px; border-top: 1.4px solid #cbd2d9; }
+  .band-title { position: absolute; left: 0; top: 548px; font-weight: 600; font-size: 11px; }
+  .legend { position: absolute; left: 0; top: 712px; width: 990px; font-size: 9.5px; color: #3e4c59; }
+  .legend span { margin-right: 8px; } .legend { font-size: 9px; }
+</style>
+</head>
+<body>
+<div id="canvas">
+  <h1>Fleet Invoice Analyzer: Architecture</h1>
+  <div class="sub">FastAPI service that turns a repair-shop invoice (PDF/TXT) into schema-valid JSON of <b>billed</b> line items, with totals reconciled in code.</div>
+
+  <svg viewBox="0 0 990 750" width="990" height="750">
+    <defs>
+      <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#3e4c59"/>
+      </marker>
+    </defs>
+    <g stroke="#3e4c59" stroke-width="1.5" fill="none">
+      <!-- client -> api -->
+      <path d="M120,305 L148,305" marker-end="url(#a)"/>
+      <!-- api -> fork -> azure / local -->
+      <path d="M295,305 L312,305 L312,250 L330,250" marker-end="url(#a)"/>
+      <path d="M312,305 L312,395 L330,395" marker-end="url(#a)"/>
+      <!-- azure <-> cloud -->
+      <path d="M445,178 L445,124" marker-end="url(#a)" marker-start="url(#a)"/>
+      <!-- merge -> normalize -->
+      <path d="M558,250 L578,250 L578,395 L558,395"/>
+      <path d="M578,305 L593,305" marker-end="url(#a)"/>
+      <!-- normalize -> reconcile -> validate -->
+      <path d="M720,305 L733,305" marker-end="url(#a)"/>
+      <path d="M850,305 L863,305" marker-end="url(#a)"/>
+      <!-- validate -> responses -->
+      <path d="M927,378 L927,398" marker-end="url(#a)"/>
+      <!-- response back to client -->
+      <path d="M865,505 L60,505 L60,352" marker-end="url(#a)" stroke-dasharray="5 3"/>
+    </g>
+  </svg>
+
+  <!-- External service -->
+  <div class="box azure" style="left:300px; top:50px; width:290px; height:72px;">
+    <h3>Azure AI Content Understanding</h3>
+    Analyzer <code>LineItemExtract</code>, based on <code>prebuilt-document</code> + GPT-5. OCR + layout, then the field schema acts as the prompt (incl. <code>excluded_items</code>).<span class="badge">R2</span>
+  </div>
+  <div class="lbl" style="left:452px; top:130px;">HTTPS · API key · API 2025-11-01</div>
+
+  <!-- Client -->
+  <div class="box client" style="left:0; top:258px; width:120px; height:94px;">
+    <h3>Client</h3>
+    Browser <code>/docs</code>, curl, or <code>evaluate.py</code><br>uploads one invoice:<br><code>POST /extract</code>
+  </div>
+
+  <!-- API -->
+  <div class="box api" style="left:150px; top:232px; width:145px; height:146px;">
+    <h3>FastAPI endpoint</h3>
+    <div class="file">app/main.py · extract_invoice()</div>
+    <ul>
+      <li>Accept only .pdf / .txt</li>
+      <li>Reject empty or &gt; 20 MB</li>
+      <li>Write to temp file</li>
+      <li>Catch every error → clean HTTP response<span class="badge">R1</span></li>
+    </ul>
+  </div>
+
+  <!-- Extractor group -->
+  <div class="group" style="left:320px; top:166px; width:250px; height:306px;"></div>
+  <div class="group-label" style="left:330px; top:159px;">app/extractor.py · extract_document()</div>
+  <div class="lbl" style="left:206px; top:386px;">EXTRACTION_MODE</div>
+
+  <div class="box azure" style="left:332px; top:180px; width:226px; height:142px;">
+    <h3>azure mode · extract_with_azure()</h3>
+    <ul>
+      <li><code>POST …:analyzeBinary</code> → 202 + placeholder</li>
+      <li>Poll <code>operation-location</code> until Succeeded (same host only, honours Retry-After, 90 s timeout)</li>
+      <li>Returns fields + usage (pages, tokens)</li>
+    </ul>
+  </div>
+
+  <div class="box local" style="left:332px; top:332px; width:226px; height:130px;">
+    <h3>local_demo mode (offline)</h3>
+    <ul>
+      <li>Read text (pypdf for PDFs)</li>
+      <li>Route by vendor: Great Lakes, Harborline, Desert Sun, or <code>ITEM|</code> format</li>
+      <li>Regex/layout parsers keep billed rows only<span class="badge">R2</span></li>
+      <li>Unknown layout → error, never fake data</li>
+    </ul>
+  </div>
+
+  <!-- Normalize -->
+  <div class="box code" style="left:595px; top:225px; width:125px; height:153px; font-size:9.5px;">
+    <h3>Normalize</h3>
+    <div class="file">normalize_analyzer_result()</div>
+    <ul>
+      <li>Unwrap Azure fields</li>
+      <li><code>_to_number</code>: "$1,040.58" → 1040.58; text → 502<span class="badge">R1</span></li>
+      <li>Excluded items → notes<span class="badge">R2</span></li>
+    </ul>
+  </div>
+
+  <!-- Reconcile -->
+  <div class="box code" style="left:735px; top:225px; width:115px; height:156px;">
+    <h3>Reconcile</h3>
+    <div class="file">reconcile()</div>
+    <ul>
+      <li>Decimal, round to cents</li>
+      <li>Σ items vs subtotal</li>
+      <li>subtotal + tax vs total</li>
+      <li>Mismatch → flag + note, never "fixed"<span class="badge">R3</span></li>
+    </ul>
+  </div>
+
+  <!-- Validate -->
+  <div class="box gate" style="left:865px; top:225px; width:125px; height:153px;">
+    <h3>Schema gate</h3>
+    <div class="file">app/schema.py (Pydantic)</div>
+    <ul>
+      <li><code>extra="forbid"</code></li>
+      <li>line_type ∈ 5 values</li>
+      <li>amount required</li>
+      <li>ISO service_date<span class="badge">R1</span></li>
+    </ul>
+  </div>
+
+  <!-- Responses -->
+  <div class="box gate" style="left:865px; top:400px; width:125px; height:124px;">
+    <h3>Response</h3>
+    <b>200</b> InvoiceExtraction JSON<br>
+    <b>422</b> schema issues listed<br>
+    <b>502</b> Azure / parse error<br>
+    <b>4xx</b> bad upload
+  </div>
+  <div class="lbl" style="left:420px; top:498px;">JSON response</div>
+
+  <!-- Offline tooling band -->
+  <div class="band"></div>
+  <div class="band-title">Offline tooling: set-up, evaluation, tests</div>
+
+  <div class="box tool" style="left:0; top:570px; width:238px; height:132px;">
+    <h3>Analyzer set-up</h3>
+    <div class="file">scripts/create_analyzer.py</div>
+    Reads <code>azure/analyzer_definition.json</code> (field schema: header, <code>line_items</code>, <code>excluded_items</code>, totals) and PUTs it to Azure (<code>--replace</code> overwrites), then polls until ready.
+  </div>
+
+  <div class="box tool" style="left:250px; top:570px; width:238px; height:132px;">
+    <h3>Evaluation<span class="badge">R4</span></h3>
+    <div class="file">scripts/evaluate.py --mode azure|local_demo</div>
+    Sends all 12 sample files through the real <code>/extract</code>, scores against <code>samples/labels.json</code>: line-item P/R/F1, headers, totals, reconciliation flag, leaked unbilled items → <code>evaluation/results_*.json</code>.
+  </div>
+
+  <div class="box tool" style="left:500px; top:570px; width:238px; height:132px;">
+    <h3>Test documents<span class="badge">R4</span></h3>
+    <div class="file">samples/ · scripts/make_sample_pdfs.py</div>
+    3 provided invoices (inv_07–09) + 3 created ones (inv_10 Pinecrest: declined rows, inv_11 Ironbridge: wrong subtotal, inv_12 Northstar: 2 pages, 2 taxes, deposit), each as .txt and .pdf.
+  </div>
+
+  <div class="box tool" style="left:750px; top:570px; width:240px; height:132px;">
+    <h3>Unit tests (pytest, 20)</h3>
+    <div class="file">tests/</div>
+    Reconciliation maths, Azure polling (202 → Succeeded), number conversion and clean errors, excluded-item notes, every sample parses the same from .txt and .pdf, unsupported layout refused.
+  </div>
+
+  <div class="legend">
+    <span><span class="badge">R1</span> schema-valid; bad output handled, no crash</span>
+    <span><span class="badge">R2</span> billed items only; recommended/declined excluded</span>
+    <span><span class="badge">R3</span> totals reconciled in code, mismatches flagged</span>
+    <span><span class="badge">R4</span> samples + 3 created docs evaluated</span>
+  </div>
+</div>
+</body>
+</html>
